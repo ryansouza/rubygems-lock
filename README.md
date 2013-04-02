@@ -12,10 +12,8 @@ I'm not entirely sure...
 
 ## Installation
 
-- Move gemspec dependencies to the Gemfile
-
-```
-# in ____.gemspec, replace
+```ruby
+# in xxxx.gemspec, replace
 ....
 spec.add_dependency "bundler", "~> 1.0"
 spec.add_development_dependency "rake"
@@ -25,10 +23,15 @@ spec.add_development_dependency "minitest"
 # with
 
 spec.add_locked_dependencies
+```
 
+```ruby
+# in the Gemfile
 
-# add to Gemfile
-...
+# replace
+gemspec
+
+# with
 gem "bundler", "~> 1.0"
 
 group :development do
@@ -36,8 +39,9 @@ group :development do
   gem "minitest"
   gem "rubygems-lock"    # Don't forget this! :)
 end
+```
 
-
+```bash
 # remove Gemfile.lock from .gitignore,
 # check it in to version control
 git add Gemfile.lock
@@ -46,9 +50,9 @@ git add Gemfile.lock
 bundle install
 
 # commit everything and cut a gem
-gem build ____.gemspec
+gem build xxxx.gemspec
 
 # the gem has all the dependencies locked
 # to the versions you developed and tested with
-gem spec ____-#.#.#.gem --ruby
+gem spec xxxx-0.0.0.gem --ruby
 ```
