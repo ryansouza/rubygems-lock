@@ -13,7 +13,12 @@ I'm not entirely sure...
 ## Installation
 
 ```ruby
-# in xxxx.gemspec, replace
+# in xxxx.gemspec
+
+# require gem
+require "rubygems/lock"
+
+# replace
 ....
 spec.add_dependency "bundler", "~> 1.0"
 spec.add_development_dependency "rake"
