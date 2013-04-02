@@ -27,7 +27,7 @@ describe "A gemspec with locked dependencies" do
     deps = deps.select {|d| d.type == :development}
     deps = deps.sort_by(&:name)
     deps = deps.map {|d| [d.name.to_s, d.requirement.to_s]}
-    deps.must_equal [["bundler", "= 1.3.4"], ["minitest", "= 4.7.0"], ["rake", "= 10.0.4"]]
+    deps.must_equal [["bundler", "= #{Bundler::VERSION}"], ["minitest", "= 4.7.0"], ["rake", "= 10.0.4"]]
   end
 end
 
