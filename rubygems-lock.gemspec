@@ -20,4 +20,5 @@ Gem::Specification.new do |spec|
   # Verified with 1.0 through 1.3
   spec.add_dependency "bundler", "~> 1.0"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "minitest"
 end
