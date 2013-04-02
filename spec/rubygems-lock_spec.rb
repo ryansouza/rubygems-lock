@@ -1,7 +1,8 @@
 require 'minitest/autorun'
 
 require 'rubygems/lock'
-#require File.expand_path('../../lib/rubygems/lock', __FILE__)
+
+# Uses this gem's Gemfile
 
 describe "A gemspec with locked dependencies" do
   before do
@@ -14,19 +15,19 @@ describe "A gemspec with locked dependencies" do
   end
 
   it "includes the runtime dependencies with exact versions" do
-    dependencies = @gemspec.dependencies
-    dependencies.select!{|d| d.type == :runtime}
-    dependencies.sort_by!(&:name)
-    dependencies.map! {|d| [d.name.to_s, d.requirement.to_s]}
-    dependencies.must_equal [["rubygems-lock", "= #{Rubygems::Lock::VERSION}"]]
+    deps = @gemspec.dependencies
+    deps = deps.select {|d| d.type == :runtime}
+    deps = deps.sort_by(&:name)
+    deps = deps.map {|d| [d.name.to_s, d.requirement.to_s]}
+    deps.must_equal [["rubygems-lock", "= #{Rubygems::Lock::VERSION}"]]
   end
 
   it "includes the development dependencies with exact versions" do
-    dependencies = @gemspec.dependencies
-    dependencies.select!{|d| d.type == :development}
-    dependencies.sort_by!(&:name)
-    dependencies.map! {|d| [d.name.to_s, d.requirement.to_s]}
-    dependencies.must_equal [["bundler", "= 1.3.4"], ["rake", "= 10.0.4"]]
+    deps = @gemspec.dependencies
+    deps = deps.select {|d| d.type == :development}
+    deps = deps.sort_by(&:name)
+    deps = deps.map {|d| [d.name.to_s, d.requirement.to_s]}
+    deps.must_equal [["bundler", "= 1.3.4"], ["minitest", "= 4.7.0"], ["rake", "= 10.0.4"]]
   end
 end
 
@@ -44,19 +45,19 @@ describe "A gemspec without the ability to use development dependencies" do
   end
 
   it "includes the runtime dependencies with exact versions" do
-    dependencies = @gemspec.dependencies
-    dependencies.select!{|d| d.type == :runtime}
-    dependencies.sort_by!(&:name)
-    dependencies.map! {|d| [d.name.to_s, d.requirement.to_s]}
-    dependencies.must_equal [["rubygems-lock", "= #{Rubygems::Lock::VERSION}"]]
+    deps = @gemspec.dependencies
+    deps = deps.select {|d| d.type == :runtime}
+    deps = deps.sort_by(&:name)
+    deps = deps.map {|d| [d.name.to_s, d.requirement.to_s]}
+    deps.must_equal [["rubygems-lock", "= #{Rubygems::Lock::VERSION}"]]
   end
 
   it "includes the development dependencies with exact versions" do
-    dependencies = @gemspec.dependencies
-    dependencies.select!{|d| d.type == :development}
-    dependencies.sort_by!(&:name)
-    dependencies.map! {|d| [d.name.to_s, d.requirement.to_s]}
-    dependencies.must_equal []
+    deps = @gemspec.dependencies
+    deps = deps.select {|d| d.type == :development}
+    deps = deps.sort_by(&:name)
+    deps = deps.map {|d| [d.name.to_s, d.requirement.to_s]}
+    deps.must_equal []
   end
 end
 
